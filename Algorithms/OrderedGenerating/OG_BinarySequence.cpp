@@ -29,7 +29,7 @@ void binGenerate(int binNum[], int binLength) {
 }
 
 int main() {
-	ios_base::sync_with_stdio(0);
+    ios_base::sync_with_stdio(0);
     int n;
     cin >> n;
     int a[n];
