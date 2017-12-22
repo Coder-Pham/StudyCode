@@ -1,3 +1,8 @@
+/** 
+ *  Author: Nhat M. Nguyen
+ *  Date: 15-12-17
+ **/
+
 #include <algorithm>
 #include <iostream>
 
