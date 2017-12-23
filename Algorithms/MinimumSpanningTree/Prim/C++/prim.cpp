@@ -5,7 +5,7 @@
 
 #include <functional> // std::greater
 #include <iostream>
-#include <queue>   // std::queue
+#include <queue>   // std::priority_queue
 #include <vector>
 #include <utility> // std::pair
 
@@ -69,3 +69,21 @@ int main() {
 
     return 0;
 }
+
+/*
+  TEST
++ IN:
+7 10
+0 1 4
+0 3 1
+1 2 5
+1 3 10
+1 4 4
+2 4 1
+3 5 3
+4 5 5
+4 6 10
+5 6 10
++ OUT:
+Min cost: 23
+*/
