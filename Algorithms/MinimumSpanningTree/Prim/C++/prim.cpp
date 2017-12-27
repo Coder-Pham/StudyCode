@@ -72,6 +72,7 @@ int main() {
 
 /*
   TEST
+
 + IN:
 7 10
 0 1 4
@@ -84,6 +85,9 @@ int main() {
 4 5 5
 4 6 10
 5 6 10
+
 + OUT:
 Min cost: 23
+
 */
+

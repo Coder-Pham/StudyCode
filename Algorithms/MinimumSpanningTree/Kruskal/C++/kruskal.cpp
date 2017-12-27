@@ -7,10 +7,12 @@
 #include <iostream>
 #include <vector>
 
+
 using namespace std;
 
 vector<int> parent; // hash table
 vector<int> depth;
+
 
 struct Edge {
     int u, v, w;
@@ -26,6 +28,7 @@ struct Edge {
     }
 };
 
+
 int find(int u) {
     int v = u;
     while (v != parent[v]) {
@@ -33,6 +36,7 @@ int find(int u) {
     }
     return v;
 }
+
 
 void unionSet(int a, int b) {
     if (depth[a] < depth[b]) {
@@ -45,6 +49,7 @@ void unionSet(int a, int b) {
         }
     }
 }
+
 
 int main() {
     /*** Get number of vertices and edges ***/
@@ -83,7 +88,7 @@ int main() {
         }
     }
 
-    for (Edge edge: mst) {
+    for (Edge edge : mst) {
         minCost += edge.w;
     }
 
@@ -92,8 +97,10 @@ int main() {
     return 0;
 }
 
+
 /*
   TEST
+
 + IN:
 7 10
 0 1 4
@@ -106,7 +113,9 @@ int main() {
 4 5 5
 4 6 10
 5 6 10
+
 + OUT:
 Min cost: 23
+
 */
 
