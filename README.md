@@ -5,9 +5,9 @@ This repository is composed of the code I created during my self-study progress.
 Most of the files are implementation of Algorithms and Data Structures.
 
 
-Most of the time, C++ would be used.Since it is the language that I will used most
+Most of the time, C++ would be used. Since it is the language that I will used most
 often at my university, I should spend some time practicing with it. Other languages
-are Java or Python. Currently, I am planning to add some JavaScript visualization in the future.
+are Java or Python. I am planning to add some JavaScript visualization in the future.
 
 ## List of Algorithms ##
 * Euclidean GCD
