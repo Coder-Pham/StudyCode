@@ -10,6 +10,12 @@ often at my university, I should spend some time practicing with it. Other langu
 are Java or Python. I am planning to add some JavaScript visualization in the future.
 
 ## List of Algorithms ##
+* Backtracking
+    * Generating binary sequences [C++]
+    * Generating permutations [C++]
+    * Generating possible sums of a number [C++]
+    * Generating subsets [C++]
+    * Sudoku [C++]
 * Euclidean GCD
 * Graph
     * Breadth-First Search (BFS) [C++, Java]
