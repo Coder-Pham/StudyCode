@@ -14,7 +14,7 @@
 using namespace std;
 
 
-const int INF = (int) 1e6;
+const int INF = (int) 1e6; // Infinite distance: should be > max_w * max_nEdges
 vector<int> dist;
 priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
 
@@ -22,7 +22,7 @@ priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> 
 void relax(int u, int v, int w) {
     if (dist[v] > dist[u] + w) {
         dist[v] = dist[u] + w;
-        pq.push(make_pair(w, v));
+        pq.push(make_pair(dist[v], v));
     }
 }
 

@@ -38,6 +38,7 @@ are Java or Python. I am planning to add some JavaScript visualization in the fu
     * Selection Sort [Python]
 
 ## List of Data Structures ##
+* Disjoint Set [C++]
 * Heap [C++]
 * Single Linked-List [C++]
 * Tree [C++]
