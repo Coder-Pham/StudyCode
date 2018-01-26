@@ -1,3 +1,6 @@
 /Algorithms/Backtracking/sudoku.txt
 /Algorithms/PeakFinding/__pycache__
 /Algorithms/PeakFinding/testcase.txt
+*.exe
+*.class
+*.sh
