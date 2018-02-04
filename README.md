@@ -33,7 +33,7 @@ are Java or Python. I am planning to add some JavaScript visualization in the fu
 * Sorting
     * Bubble Sort [Python]
     * Heap Sort [C++]
-    * Insertion Sort [Python]
+    * Insertion Sort [C++, Python]
     * Merge Sort [C++]
     * Selection Sort [Python]
 
