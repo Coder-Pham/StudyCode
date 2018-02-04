@@ -35,7 +35,7 @@ are Java or Python. I am planning to add some JavaScript visualization in the fu
     * Heap Sort [C++]
     * Insertion Sort [C++, Python]
     * Merge Sort [C++]
-    * Selection Sort [Python]
+    * Selection Sort [C++, Python]
 
 ## List of Data Structures ##
 * Disjoint Set [C++]
