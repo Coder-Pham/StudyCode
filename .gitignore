@@ -3,5 +3,6 @@
 /Algorithms/PeakFinding/testcase.txt
 *.exe
 *.class
+*.o
 *.sh
 *.txt
