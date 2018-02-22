@@ -10,45 +10,47 @@ uses crt;
 
 
 const
-  INF = 10000;
-  MAXN = 1000;
+  MAXN = 100000;
+  INF = 100000;
 
 
 var
-  i: integer;
-  a: array [1..MAXN] of integer = (3, 7, 1, 5, 0, 9, 2, 8, 4, 6);
+  i, n: longint;
+  a: array [0..MAXN] of longint;
 
 
-procedure merge(a: array of integer, start_index: integer, mid_index: integer, end_index: integer);
+procedure merge(var a: array of longint; st: longint; mi: longint; en: longint);
+
   var
-    i, j: integer;
-    n_left, n_right: integer;
-    left, right: array of integer;
+    i, j, k: longint;
+    n_left, n_right: longint;
+    left: array of longint;
+    right: array of longint;
 
   begin
-    n_left := mid_index - start_index + 1;
-    n_right := end_index - mid_index;
-
+    n_left := mi - st + 1;
+    n_right := en - (mi + 1) + 1;
+    
     setlength(left, n_left + 1);
     setlength(right, n_right + 1);
 
-    for i := start_index to mid_index do
-      left[i - start_index] := a[i];
-
-    for j := mid_index + 1 to end_index do
-      right[i - mid_index - 1] := a[i];
-
+    for i := st to mi do
+      left[i - st] := a[i];
+    
+    for j := mi + 1 to en do
+      right[j - mi - 1] := a[j];
+    
     left[n_left] := INF;
     right[n_right] := INF;
-
     i := 0;
     j := 0;
-    for k := start_index to end_index do
-      if left[i] <= right[j] then
+
+    for k := st to en do
+      if left[i] < right[j] then
         begin
-          a[k] := left[i]
+          a[k] := left[i];
           i := i + 1;
-        end;
+        end
       else
         begin
           a[k] := right[j];
@@ -57,24 +59,28 @@ procedure merge(a: array of integer, start_index: integer, mid_index: integer, e
   end;
 
 
-procedure merge_sort(a: array of integer, start_index: integer, end_index: integer);
+procedure merge_sort(var a: array of longint; st: longint; en: longint);
+
   var
-    mid_index: integer;
+    mi: longint;
 
   begin
-    mid_index := (start_index + end_index) div 2;
-
-    merge_sort(a, start_index, mid_index);
-    merge_sort(a, mid_index + 1, end_index);
-
-    merge(a, start_index, mid_index, end_index);
+    if st < en then
+      begin
+        mi := (st + en) div 2;
+        merge_sort(a, st, mi);
+        merge_sort(a, mi + 1, en);
+        merge(a, st, mi, en);
+      end;
   end;
 
 
 begin
   clrscr;
-  merge_sort(a, 0, 10 - 1);
-  for i := 0 to 9 do
-    write(a[i], ' ');
-  readln
+  readln(n);
+  for i := 0 to n - 1 do
+    readln(a[i]);
+  merge_sort(a, 0, n - 1);
+  for i := 0 to n - 1 do
+    writeln(a[i]);
 end.
