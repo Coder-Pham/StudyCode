@@ -1,68 +1,117 @@
-#include <iostream>
-#include <math.h>
-#include <vector>
-#include <time.h>
+/**
+ * @author Nhat M. Nguyen
+ * @date   16-04-18
+**/
+
+
+/**
+ * Naive sieve
+ * + Time complexity   O(nlog(n)log(log(n)))
+ * + Space complexity  O(n)
+ *
+ * Segmented sieve
+ * + Time complexity   O(nlog(n)log(log(n)))
+ * + Space complexity  O(sqrt(n))
+**/
+
+
+#include <bits/stdc++.h>
+
+
+#ifdef DEBUG
+    #define dcerr(x) \
+        cerr << "$ " << setw(20) << \
+            #x << setw(3) << "=" << setw(20) << x << "\n"
+
+    #define dcout(x) \
+        cout << "$ " << setw(20) << \
+            #x << setw(3) << "=" << setw(20) << x << "\n"
+#else
+    #define dcerr(x)
+    #define dcout(x)
+#endif
+
 
 using namespace std;
 
-vector<int> naiveSieve(int lim) {
-    bool isPrime[lim + 1];
-    fill(isPrime, isPrime + lim + 1, true);
 
-    for (int i = 2; i <= lim; i++) {
-        if (!isPrime[i]) continue;
+const long long N = (long long) 1e6;
+
+
+vector<int> small_primes;
+vector<long long> primes;
+
+
+void naive_sieve() {
+    cout << "Doing naive sieve...\n";
+    int n = (int) ceil(sqrt(N));
+    int sqrt_n = (int) ceil(sqrt(n));
+
+    bool is_prime[n + 1];
+    
+    fill(is_prime, is_prime + n + 1, true);
+
+    for (int i = 2; i <= sqrt_n; i++) {
         int composite = i * 2;
-        while (composite <= lim) {
-            isPrime[composite] = false;
+        while (composite <= n) {
+            is_prime[composite] = false;
             composite += i;
         }
     }
 
-    vector<int> prime;
-    for (int i = 2; i <= lim; i++) {
-        if (isPrime[i]) prime.push_back(i);
+    for (int i = 2; i <= n; i++) {
+        if (is_prime[i]) {
+            small_primes.push_back(i);
+        }
     }
-    return prime;
 }
 
-vector<long long> segmentedSieve(long long lim) {
-    int sqrtLim = (int) ceil(sqrt(lim));
-    vector<int> sprime = naiveSieve(sqrtLim);
-    int nsmall = sprime.size();
-    vector<long long> prime;
-    for (int i = 0; i < nsmall; i++) {
-        prime.push_back((long long) sprime[i]);
-    }
-    long long low = sqrtLim + 1;
-    long long high = sqrtLim + sqrtLim;
-    
-    while (low < lim) {
-        int n = high - low + 1;
-        bool isPrime[n];
-        fill(isPrime, isPrime + n, true);
-        for (int i = 0; i < nsmall; i++) {
-            long long p = (long long) sprime[i];
-            long long composite = ceil((double) low / p) * p;
-            while (composite <= high) {
-                isPrime[composite - low] = false;
-                composite += p;
+
+void segmented_sieve() {
+    naive_sieve();
+    int n = (int) ceil(sqrt(N));
+    long long low = 2;
+    long long high = low + n;
+    int cnt = 0;
+    while (low <= N) {
+        int range = high - low;
+        bool is_prime[range];
+        fill(is_prime, is_prime + range, true);
+        for (int i = 0; i < (int) small_primes.size(); i++) {
+            int mult = (int) ceil((double) low / small_primes[i]);
+            long long composite = mult * small_primes[i];
+            while (composite < high) {
+                is_prime[composite - low] = false;
+                composite += small_primes[i];
             }
         }
-        for (int i = 0; i < n; i++) {
-            if (isPrime[i]) {
-                prime.push_back(i + low);
+        for (int i = 0; i < range; i++) {
+            if (is_prime[i]) {
+                primes.push_back(i + low);
             }
         }
-        low += sqrtLim;
-        high = (high + sqrtLim > lim) ? (lim) : (high + sqrtLim);
+        low += n;
+        if (high + n < N) {
+            high += n;
+        }
+        else {
+            high = N;
+        }
+        cnt++;
     }
-    return prime;
 }
+
 
 int main() {
     ios_base::sync_with_stdio(0);
-    const long long N = (long long) 1e11;
-    vector<long long> prime = segmentedSieve(N);
-    cerr << "Time elapsed: " << 1.0 * clock() / CLOCKS_PER_SEC << " s.\n";
+    cin.tie(0);
+    cout << fixed << setprecision(9);
+
+    segmented_sieve();
+    int num_primes = primes.size();
+    for (int i = 0; i < num_primes; i++) {
+        cout << primes[i] << endl;
+    }
+
     return 0;
 }
