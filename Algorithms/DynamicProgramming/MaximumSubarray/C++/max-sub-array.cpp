@@ -1,6 +1,10 @@
 /**
  * @author Nhat M. Nguyen
  * @date   17-04-18
+ *
+ *
+ * Maximum subarray problem with Kadane algorithm
+ * Time complexity: O(n)
 **/
 
 
