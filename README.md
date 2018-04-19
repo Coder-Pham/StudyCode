@@ -47,6 +47,6 @@ JavaScript visualization in the future.
 ## List of Data Structures ##
 * Disjoint Set [C++]
 * Heap [C++]
-* Single Linked-List [C++]
+* Singly Linked-List [C++]
 * Tree [C++]
     * Pre-order, In-order, Post-order Traversal [C++]

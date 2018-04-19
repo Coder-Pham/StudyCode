@@ -1,63 +1,72 @@
+/**
+ * @author Nhat M. Nguyen
+ * @date   21-11-17
+**/
+
+
 #include <iostream>
 
-#define debug(x) { cerr << #x << " = " << (x) << "\n"; }
 
 using namespace std;
 
+
 struct Node {
-    int data;
+    int key;
     Node* next;
 
-    Node(int _data, Node* _next) {
-        data = _data;
+    Node(int _key, Node* _next) {
+        key = _key;
         next = _next;
     }
 };
 
-struct LinkedList {
+
+struct SinglyLinkedList {
     Node* head = NULL;
     Node* tail = NULL;
     
-    void insertToEnd(int data) {
+    void insert(int key) {
         if (tail == NULL) {
-            head = new Node(data, NULL);
+            head = new Node(key, NULL);
             tail = head;
         }
         else {
-            tail->next = new Node(data, NULL);
+            tail->next = new Node(key, NULL);
             tail = tail->next;
         }
     }
 
-    void insertToStart(int data) {
-        head = new Node(data, head);
+    void insert_head(int key) {
+        head = new Node(key, head);
     }
 
-    void insertToPos(int pos, int data) {
+    void insert_pos(int pos, int key) {
         if (pos == 0) {
-            insertToStart(data);
+            insert(key);
             return;
         }
 
         Node* temp = head;
         Node* prev = NULL;
+
         for (int i = 0; i < pos; i++) {
             prev = temp;
             temp = temp->next;
         }
-        temp = new Node(data, temp);
+
+        temp = new Node(key, temp);
         prev->next = temp;
     }
 
-    void deleteFromStart() {
+    void delete_head() {
         Node* temp = head;
         head = head->next;
-        delete[] temp;
+        delete temp; temp = NULL;
     }
 
-    void deletePos(int pos) {
+    void delete_pos(int pos) {
         if (pos == 0) {
-            deleteFromStart();
+            delete_head();
             return;
         }
 
@@ -69,10 +78,22 @@ struct LinkedList {
             temp = temp->next;
         }
         prev->next = temp->next;
-        delete[] temp;
+        delete temp; temp = NULL;
     }
 
-    void iterReverse() {
+    /** 
+     *  Search
+     *  Time complexity: O(n)
+    **/
+    Node* search(int key) {
+        Node* tmp = this->head;
+        while (tmp != NULL && tmp->key != key) {
+            tmp = tmp->next;
+        }
+        return tmp;
+    }
+
+    void reverse() {
         Node* temp = head;
         Node* prev = NULL;
         Node* next = NULL;
@@ -96,32 +117,32 @@ struct LinkedList {
         Node* temp = head;
         int cnt = 0;
         while (temp != NULL) {
-            cout << "Node number: " << cnt << "\t Data: " << temp->data << "\n";
-            temp = temp->next;
+            cout << "Node number: " << cnt << "\t Key: " << temp->key << "\n";
             cnt++;
+            temp = temp->next;
         }
     }
 
-    void recursiveShow(Node* p) {
+    void recursive_show(Node* p) {
         if (p == NULL) return;
-        cout << "Data: " << p->data << "\n";
-        recursiveShow(p->next);
+        cout << "Data: " << p->key << "\n";
+        recursive_show(p->next);
     }
 
-    void recursiveShowReverse(Node* p) {
+    void recursive_show_reverse(Node* p) {
         if (p == NULL) return;
-        recursiveShowReverse(p->next);
-        cout << "Data: " << p->data << "\n";
+        recursive_show_reverse(p->next);
+        cout << "Data: " << p->key << "\n";
     }
 };
 
 int main() {
-    LinkedList linkedList;
+    SinglyLinkedList linkedList;
     for (int i = 0; i < 10; i++) {
-        linkedList.insertToEnd(i);
+        linkedList.insert(i);
     }
-    linkedList.recursiveShow(linkedList.head);
+    linkedList.recursive_show(linkedList.head);
     cout << endl;
-    linkedList.recursiveShowReverse(linkedList.head);
+    linkedList.recursive_show_reverse(linkedList.head);
     return 0;
 }
