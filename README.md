@@ -50,5 +50,7 @@ JavaScript visualization in the future.
 * Linked-List
     * Singly Linked-List [C++]
     * Doubly Linked-List [C++]
+* Queue [C++]
+* Stack [C++]
 * Tree [C++]
     * Pre-order, In-order, Post-order Traversal [C++]
