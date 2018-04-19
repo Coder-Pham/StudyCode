@@ -22,6 +22,7 @@ JavaScript visualization in the future.
     * Maximum Subarray [Python]
 * Dynamic Programming
     * Maximum Subarray [C++]
+    * Rod Cutting Problem [C++]
 * Euclidean GCD
 * Graph
     * Breadth-First Search (BFS) [C++, Java]
