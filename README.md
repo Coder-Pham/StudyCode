@@ -22,6 +22,7 @@ JavaScript visualization in the future.
     * Maximum Subarray [Python]
     * Longest Common Subsequence [Python]
 * Dynamic Programming
+    * Longest Common Subsequence [C++]
     * Maximum Subarray [C++]
     * Rod Cutting Problem [C++]
 * Euclidean GCD
