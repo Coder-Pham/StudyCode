@@ -20,6 +20,7 @@ JavaScript visualization in the future.
     * Sudoku [C++]
 * Divide-and-Conquer
     * Maximum Subarray [Python]
+    * Longest Common Subsequence [Python]
 * Dynamic Programming
     * Maximum Subarray [C++]
     * Rod Cutting Problem [C++]
