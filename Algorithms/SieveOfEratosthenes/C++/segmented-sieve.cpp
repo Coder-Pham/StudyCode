@@ -35,7 +35,7 @@
 using namespace std;
 
 
-const long long N = (long long) 1e6;
+const long long N = (long long) 1e2;
 
 
 vector<int> small_primes;
@@ -70,8 +70,11 @@ void naive_sieve() {
 void segmented_sieve() {
     naive_sieve();
     int n = (int) ceil(sqrt(N));
-    long long low = 2;
-    long long high = low + n;
+    for (int i = 0;i < (int) small_primes.size(); i++) {
+        primes.push_back(small_primes[i]);
+    }
+    long long low = n;
+    long long high = n * 2;
     int cnt = 0;
     while (low <= N) {
         int range = high - low;
