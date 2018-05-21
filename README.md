@@ -40,6 +40,7 @@ JavaScript visualization in the future.
 * Sieve of Eratosthenes
     * Naive Sieve [C++]
     * Segmented Sieve [C++]
+* Shunting Yard [C]
 * Sorting
     * Bubble Sort [Python]
     * Heap Sort [C++]
