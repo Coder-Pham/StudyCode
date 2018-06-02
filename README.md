@@ -29,7 +29,8 @@ JavaScript visualization in the future.
 * Euclidean GCD
 * Graph
     * Breadth-First Search (BFS) [C++, Java]
-    * Depth-First Search (DFS) [Java]
+    * Depth-First Search (DFS) [C++, Java]
+    * Directed Acrylic Graph (DAG) with Topological Sort [C++]
 * Minimum Spanning Tree
     * Prim's MST [C++]
     * Kruskal's MST [C++]
