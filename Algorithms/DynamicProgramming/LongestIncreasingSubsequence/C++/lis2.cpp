@@ -6,6 +6,8 @@
 
 /**
  * O(nlogn) solution for the Longest Increasing Subsequence problem
+ * This code has been used in the submission for this problem:
+ *   https://vn.spoj.com/problems/LIS/
 **/
 
 
@@ -48,7 +50,7 @@ int main() {
             aux.push_back(a[i]);
         }
         else {
-            int j = upper_bound(aux.begin(), aux.end(), a[i]) - aux.begin();
+            int j = lower_bound(aux.begin(), aux.end(), a[i]) - aux.begin();
             aux[j] = a[i];
         }
     }

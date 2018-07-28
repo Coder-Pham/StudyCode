@@ -2,7 +2,7 @@
 
 ## Introduction ##
 This repository is composed of the code I created during my self-study progress.
-Most of the files are implementation of Algorithms and Data Structures.
+Most of the files are implementations of Algorithms and Data Structures.
 
 
 Most of the time, C++ would be used. Since it is the language that I will used
