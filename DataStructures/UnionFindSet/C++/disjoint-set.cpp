@@ -1,6 +1,6 @@
 /**
- *  Author: Nhat M. Nguyen
- *  Date:   11-01-18
+ *  Author Nhat M. Nguyen
+ *  Date   11-01-18
  *  Description: This program checks whether pairs of numbers are in the same
  *  set by implementing disjoint sets.
  *
