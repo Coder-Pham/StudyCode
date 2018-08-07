@@ -34,6 +34,8 @@ JavaScript visualization in the future.
 * Minimum Spanning Tree
     * Prim's MST [C++]
     * Kruskal's MST [C++]
+* Searching
+    * Binary Search with Lower-bound and Upper-bound functionalities [Java]
 * Shortest Path
     * Bellman-Ford [C++]
     * Dijkstra [C++, Java]
@@ -59,4 +61,4 @@ JavaScript visualization in the future.
 * Stack [C++]
 * Tree [C++]
     * Pre-order, In-order, Post-order Traversal [C++]
-* Union-Find Set (Disjoint Set) [C++]
+* Union-Find Set (Disjoint Set) [C++, Java]
