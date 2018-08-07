@@ -1,52 +1,76 @@
-public class BinarySearch() {
-	int binarySearch(int[] a, int x) {
-        int start = 0;
-        int end = a.length - 1;
+/**
+ * @author Nhat M. Nguyen
+ * @update 07-08-2018
+**/
+
+
+public class BinarySearch {
+    /**
+     *  @param  a     array
+     *  @param  start first index
+     *  @param  end   last index, exclusive
+     *  @param  key   search key
+     *  @return the index of an element equals to key, or
+     *  -1 if no such element exists
+     *  Time complexity: O(log(n))
+    **/
+    int binarySearch(int[] a, int start, int end, int key) {
+        end--;
         int mid = (start + end) / 2;
-        int res = -1;
-        while (start != end) {
-            if (x < a[mid]) {
+        while (start < end && a[mid] != key) {
+            if (a[mid] < key) {
+                start = mid + 1;
+            }
+            else {
                 end = mid - 1;
+            }
+            mid = (start + end) / 2;
+        }
+        return (a[mid] == key) ? (mid) : (-1);
+    }
+
+    /**
+     *  @param  a     array
+     *  @param  start first index
+     *  @param  end   last index, exclusive
+     *  @param  key   search key
+     *  @return the index of the leftmost element that is
+     *  less than or equals to key
+     *  Time complexity: O(log(n))
+    **/
+    int lowerBound(int[] a, int start, int end, int key) {
+        while (start < end) {
+            int mid = (start + end) / 2;
+            if (a[mid] >= key) {
+                end = mid;
             }
             else {
                 start = mid + 1;
             }
-            mid = (start + end) / 2;
-            if (a[mid] == x) {
-                res = mid;
-                break;
-            }
         }
-        return res;
-    }
-	
-	int lowerBound(int[] a, int x) {
-        int low = 0;
-        int high = a.length;
-        while (low < high) {
-            int mid = (low + high) / 2;
-            if (x <= a[mid]) {
-                high = mid;
-            }
-            else {
-                low = mid + 1;
-            }
-        }
-        return low;
+        return start;
     }
 
-    int upperBound(int[] a, int x) {
-        int low = 0;
-        int high = a.length;
-        while (low < high) {
-            int mid = (low + high) / 2;
-            if (x >= a[mid]) {
-                low = mid + 1;
+
+    /**
+     *  @param  a     array
+     *  @param  start first index
+     *  @param  end   last index, exclusive
+     *  @param  key   search key
+     *  @return the index of the leftmost element that is
+     *  strictly less than key
+     *  Time complexity: O(log(n))
+    **/
+    int upperBound(int[] a, int start, int end, int key) {
+        while (start < end) {
+            int mid = (start + end) / 2;
+            if (a[mid] <= key) {
+                start = mid + 1;
             }
             else {
-                high = mid;
+                end = mid;
             }
         }
-        return low;
+        return start;
     }
 }
