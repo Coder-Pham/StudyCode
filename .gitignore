@@ -14,3 +14,6 @@
 
 # text files
 *.txt
+
+# Makefile
+Makefile
