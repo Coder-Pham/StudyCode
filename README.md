@@ -25,7 +25,8 @@ JavaScript visualization in the future.
     * Longest Common Subsequence [C++]
     * Longest Increasing Subsequence [C++]
     * Maximum Subarray [C++]
-    * Rod Cutting Problem [C++]
+    * Rod Cutting [C++]
+    * Zero-One Knapsack [C++]
 * Euclidean GCD
 * Graph
     * Breadth-First Search (BFS) [C++, Java]
