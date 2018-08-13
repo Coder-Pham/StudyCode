@@ -1,3 +1,10 @@
+/**
+ *  @author Nhat M. Nguyen
+ *  @update 13-08-18
+**/
+
+
+
 #include <bits/stdc++.h>
 
 

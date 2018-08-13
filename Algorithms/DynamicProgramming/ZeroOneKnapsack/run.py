@@ -34,6 +34,8 @@ def run_test():
             if out_lines[i] != ans_lines[i]:
                 print("WA")
                 return False
+
+    os.system("rm _in.txt _ans.txt _out.txt")
     print("AC - time taken: {0:.6f}".format(time_taken))
     return True
 
