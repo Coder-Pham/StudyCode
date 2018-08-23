@@ -61,5 +61,6 @@ JavaScript visualization in the future.
 * Queue [C++]
 * Stack [C++]
 * Tree [C++]
+    * Binary Search Tree [C++]
     * Pre-order, In-order, Post-order Traversal [C++]
 * Union-Find Set (Disjoint Set) [C++, Java]
