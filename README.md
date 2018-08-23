@@ -41,6 +41,7 @@ JavaScript visualization in the future.
     * Bellman-Ford [C++]
     * Dijkstra [C++, Java]
     * Floyd-Warshall [C++]
+    * SPFA [C++]
 * Sieve of Eratosthenes
     * Naive Sieve [C++]
     * Segmented Sieve [C++]
