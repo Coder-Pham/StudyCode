@@ -1,6 +1,6 @@
 /**
  * @author Nhat M. Nguyen
- * @date   23-08-18
+ * @date   24-08-18
 **/
 
 
@@ -18,7 +18,7 @@ public:
         Node* parent;
         Node* left;
         Node* right;
-    
+
         Node(T key) {
             this->key = key;
             this->parent = NULL;
@@ -26,13 +26,15 @@ public:
             this->right = NULL;
         }
     };
-    
+
     Node* root;
-    
+    int size;
+
     BinarySearchTree() {
         this->root = NULL;
+        this->size = 0;
     }
-    
+
     Node* search(T key) {
         Node* node = this->root;
         while (node != NULL && node->key != key) {
@@ -45,7 +47,7 @@ public:
         }
         return node;
     }
-    
+
     Node* min() {
         Node* node = this->root;
         while (node->left != NULL) {
@@ -53,7 +55,7 @@ public:
         }
         return node;
     }
-    
+
     Node* min(Node* root) {
         Node* node = root;
         while (node->left != NULL) {
@@ -131,6 +133,8 @@ public:
             p->right = node;
             node->parent = p;
         }
+
+        this->size++;
     }
         
     void insert(T key) {
@@ -160,15 +164,9 @@ public:
         
         if (node->left == NULL) {
             this->transplant(node, node->right);
-            
-            delete node;
-            node = NULL;
         }
         else if (node->right == NULL) {
             this->transplant(node, node->left);
-            
-            delete node;
-            node = NULL;
         }
         else {
             /**
@@ -190,9 +188,59 @@ public:
             this->transplant(node, successor);
             successor->left = node->left;
             successor->left->parent = successor;
-            
-            delete node;
-            node = NULL;
         }
+
+        delete node;
+        node = NULL;
+
+        this->size--;
+    }
+
+    void preOrder(Node* node) {
+        if (node == NULL) return;
+
+        cout << node->key << ' ';
+        this->preOrder(node->left);
+        this->preOrder(node->right);
+    }
+
+    void preOrderTraverse() {
+        this->preOrder(this->root);
+        cout << '\n';
+    }
+
+    void inOrder(Node* node) {
+        if (node == NULL) return;
+
+        this->inOrder(node->left);
+        cout << node->key << ' ';
+        this->inOrder(node->right);
+    }
+
+    void inOrderTraverse() {
+        this->inOrder(this->root);
+        cout << '\n';
+    }
+
+    void postOrder(Node* node) {
+        if (node == NULL) return;
+
+        this->postOrder(node->left);
+        cout << node->key << ' ';
+        this->postOrder(node->right);
+    }
+
+    void postOrderTraverse() {
+        this->postOrder(this->root);
+        cout << '\n';
     }
 };
+
+
+/**
+ * One way to debug the BST is through traversals. Either the combination
+ * of
+ * + preorder and inorder
+ * + inorder and postorder
+ * would work, since each combination would produce a unique BST.
+**/
