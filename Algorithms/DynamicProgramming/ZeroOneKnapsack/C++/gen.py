@@ -1,10 +1,13 @@
 import random
 
+
 def rdint(lower, upper):
     return random.randint(lower, upper)
 
+
 def rddouble(lower, upper):
     return random.uniform(double(lower), double(upper))
+
 
 def main():
     N = rdint(1, 10)
