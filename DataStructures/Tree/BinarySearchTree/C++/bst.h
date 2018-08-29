@@ -1,7 +1,10 @@
 /**
  * @author Nhat M. Nguyen
- * @date   24-08-18
+ * @update 29-08-18
 **/
+
+
+#pragma once
 
 
 #include <bits/stdc++.h>
@@ -10,34 +13,52 @@
 using namespace std;
 
 
+/**
+ * This BSTree class is intended to be used as the parent class
+ * for other types of tree: AVL, Red-Black, etc.
+**/
+
+
 template<typename T>
-class BinarySearchTree {
+class BSTNode {
 public:
-    struct Node {
-        T key;
-        Node* parent;
-        Node* left;
-        Node* right;
+    T key;
+    BSTNode* parent;
+    BSTNode* left;
+    BSTNode* right;
 
-        Node(T key) {
-            this->key = key;
-            this->parent = NULL;
-            this->left = NULL;
-            this->right = NULL;
-        }
-    };
+    BSTNode() { // constructor for nil
+        this->key = 0;
+        this->parent = NULL;
+        this->left = NULL;
+        this->right = NULL;
+    }
 
+    BSTNode(T key, BSTNode* nil) {
+        this->key = key;
+        this->parent = nil;
+        this->left = nil;
+        this->right = nil;
+    }
+};
+
+
+template<typename T, typename Node=BSTNode<T>>
+class BSTree {
+public:
     Node* root;
     int size;
+    Node* nil; // sentinel to handle special cases
 
-    BinarySearchTree() {
-        this->root = NULL;
+    BSTree() {
+        this->nil = new Node();
+        this->root = this->nil;
         this->size = 0;
     }
 
     Node* search(T key) {
         Node* node = this->root;
-        while (node != NULL && node->key != key) {
+        while (node != this->nil && node->key != key) {
             if (key < node->key) {
                 node = node->left;
             }
@@ -50,7 +71,7 @@ public:
 
     Node* min() {
         Node* node = this->root;
-        while (node->left != NULL) {
+        while (node->left != this->nil) {
             node = node->left;
         }
         return node;
@@ -58,7 +79,7 @@ public:
 
     Node* min(Node* root) {
         Node* node = root;
-        while (node->left != NULL) {
+        while (node->left != this->nil) {
             node = node->left;
         }
         return node;
@@ -66,7 +87,7 @@ public:
     
     Node* max() {
         Node* node = this->root;
-        while (node->right != NULL) {
+        while (node->right != this->nil) {
             node = node->right;
         }
         return node;
@@ -74,19 +95,19 @@ public:
     
     Node* max(Node* root) {
         Node* node = root;
-        while (node->right != NULL) {
+        while (node->right != this->nil) {
             node = node->right;
         }
         return node;
     }
     
     Node* prev(Node* node) {
-        if (node->left != NULL) {
+        if (node->left != this->nil) {
             return this->max(node->left);
         }
 
         Node* p = node->parent;
-        while (p != NULL && node == p->left) {
+        while (p != this->nil && node == p->left) {
             node = p;
             p = p->parent;
         }
@@ -94,12 +115,12 @@ public:
     }
     
     Node* next(Node* node) {
-        if (node->right != NULL) {
+        if (node->right != this->nil) {
             return this->min(node->right);
         }
 
         Node* p = node->parent;
-        while (p != NULL && node == p->right) {
+        while (p != this->nil && node == p->right) {
             node = p;
             p = p->parent;
         }
@@ -107,10 +128,10 @@ public:
     }
 
     void insert(Node* node) {
-        Node* p = NULL;
+        Node* p = this->nil;
         Node* tmp = this->root;
 
-        while (tmp != NULL) {
+        while (tmp != this->nil) {
             p = tmp;
 
             if (node->key < tmp->key) {
@@ -121,9 +142,9 @@ public:
             }
         }
         
-        if (p == NULL) {
+        if (p == this->nil) {
             this->root = node;
-            node->parent = NULL;
+            node->parent = this->nil;
         }
         else if (node->key < p->key) {
             p->left = node;
@@ -138,11 +159,11 @@ public:
     }
         
     void insert(T key) {
-        this->insert(new Node(key));
+        this->insert(new Node(key, this->nil));
     }
     
     void transplant(Node* node, Node* child) {        
-        if (node->parent == NULL) {
+        if (node->parent == this->nil) {
             this->root = child;
         }
         else if (node == node->parent->left) {
@@ -152,20 +173,20 @@ public:
             node->parent->right = child;
         }
         
-        if (child != NULL) {
+        if (child != this->nil) {
             child->parent = node->parent;
         }
     }
     
     void remove(Node* node) {
-        if (node == NULL) {
+        if (node == this->nil) {
             return;
         }
         
-        if (node->left == NULL) {
+        if (node->left == this->nil) {
             this->transplant(node, node->right);
         }
-        else if (node->right == NULL) {
+        else if (node->right == this->nil) {
             this->transplant(node, node->left);
         }
         else {
@@ -191,13 +212,13 @@ public:
         }
 
         delete node;
-        node = NULL;
+        node = this->nil;
 
         this->size--;
     }
 
     void preOrder(Node* node) {
-        if (node == NULL) return;
+        if (node == this->nil) return;
 
         cout << node->key << ' ';
         this->preOrder(node->left);
@@ -210,7 +231,7 @@ public:
     }
 
     void inOrder(Node* node) {
-        if (node == NULL) return;
+        if (node == this->nil) return;
 
         this->inOrder(node->left);
         cout << node->key << ' ';
@@ -223,7 +244,7 @@ public:
     }
 
     void postOrder(Node* node) {
-        if (node == NULL) return;
+        if (node == this->nil) return;
 
         this->postOrder(node->left);
         cout << node->key << ' ';
@@ -234,13 +255,62 @@ public:
         this->postOrder(this->root);
         cout << '\n';
     }
+
+    #define GAPLENGTH 8
+
+    void printNode(Node* node, int nodeLevel, stack<int> &levelStack) {
+        if (node == this->nil) return;
+
+        int* stackEnd = &levelStack.top() + 1;
+        int* stackBegin = stackEnd - levelStack.size();
+        vector<int> pending(stackBegin, stackEnd);
+        int k = 0;
+
+        for (int i = 0; i < nodeLevel; i++) {
+            if (k < (int) pending.size() && pending[k] == i) {
+                cout << "│";
+                for (int j = 1; j < GAPLENGTH; j++) {
+                    cout << ' ';
+                }
+                k++;
+            }
+            else {
+                for (int j = 0; j < GAPLENGTH; j++) {
+                    cout << ' ';
+                }
+            }
+        }
+
+        if (nodeLevel == 0) {
+            cout << "└─";
+            cout << "[root : ";
+        }
+        else {
+            if (node == node->parent->left) {
+                if (node->parent->right == this->nil) {
+                    cout << "└─";
+                }
+                else {
+                    cout << "├─";
+                    levelStack.push(nodeLevel);
+                }
+                cout << "[left : ";
+            }
+            else {
+                cout << "└─";
+                cout << "[right: ";
+                assert(levelStack.top() == nodeLevel);
+                levelStack.pop();
+            }
+        }
+
+        cout << node->key << ']' << '\n';
+        this->printNode(node->left, nodeLevel + 1, levelStack);
+        this->printNode(node->right, nodeLevel + 1, levelStack);
+    }
+
+    void print() {
+        stack<int> levelStack;
+        this->printNode(this->root, 0, levelStack);
+    }
 };
-
-
-/**
- * One way to debug the BST is through traversals. Either the combination
- * of
- * + preorder and inorder
- * + inorder and postorder
- * would work, since each combination would produce a unique BST.
-**/
