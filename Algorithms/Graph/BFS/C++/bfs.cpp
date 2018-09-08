@@ -40,8 +40,7 @@ int main() {
         q.pop();
         visited[u] = true;
         cout << u << " ";
-        for (int i = 0; i < (int) adj[u].size(); i++) {
-            int v = adj[u][i];
+        for (int &v : adj[u]) {
             // Push unvisited neighbors to the queue
             if (!visited[v]) {
                 q.push(v);
