@@ -53,9 +53,14 @@ int main() {
         dfs(u);
     }
 
-    cout << "Topological order: \n";
-    for (int i = 0; i < nV; i++) {
-        cout << st.top() << '\n';
-        st.pop();
+    if (isDAG) {
+        cout << "Topological order: \n";
+        for (int i = 0; i < nV; i++) {
+            cout << st.top() << '\n';
+            st.pop();
+        }
+    }
+    else {
+        cout << "Not a DAG\n";
     }
 }
