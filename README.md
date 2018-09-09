@@ -31,7 +31,9 @@ JavaScript visualization in the future.
 * Graph
     * Breadth-First Search (BFS) [C++, Java]
     * Depth-First Search (DFS) [C++, Java]
-    * Directed Acrylic Graph (DAG) with Topological Sort [C++]
+    * Directed Acrylic Graph (DAG) with Topological Sort
+        * DFS [C++]
+        * Kahn's algorithm [C++]
 * Minimum Spanning Tree
     * Prim's MST [C++]
     * Kruskal's MST [C++]
