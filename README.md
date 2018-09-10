@@ -34,6 +34,7 @@ JavaScript visualization in the future.
     * Directed Acrylic Graph (DAG) with Topological Sort
         * DFS [C++]
         * Kahn's algorithm [C++]
+    * Strongly Connnected Components (Kosaraju's Algorithm) [C++]
 * Minimum Spanning Tree
     * Prim's MST [C++]
     * Kruskal's MST [C++]
