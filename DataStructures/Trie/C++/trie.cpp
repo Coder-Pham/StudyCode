@@ -26,7 +26,7 @@ struct Trie {
     TrieNode* root;
 
     Trie() {
-        this->root = new TrieNode('\0', NULL);
+        this->root = new TrieNode('\0');
     }
 
     /**
@@ -78,27 +78,21 @@ struct Trie {
         return node;
     }
 
-    vector<string> getWords() {
-        return this->getWords(this->root, "");
+    void getWords(vector<string> &words) {
+        return this->getWords(this->root, "", words);
     }
 
-    vector<string> getWords(TrieNode* subTrieRoot, string prefix) {
-        vector<string> res;
+    void getWords(TrieNode* subTrieRoot, string prefix, vector<string> &words) {
         map<char, TrieNode*> &children = subTrieRoot->children;
 
         for (auto it = children.begin(); it != children.end(); it++) {
             TrieNode* child = it->second;
 
             if (child->endOfWord) {
-                res.emplace_back(prefix + child->key);
+                words.emplace_back(prefix + child->key);
             }
 
-            vector<string> wordsFromChild = this->getWords(child, prefix + child->key);
-            for (string &word : wordsFromChild) {
-                res.emplace_back(word);
-            }
+            this->getWords(child, prefix + child->key, words);
         }
-
-        return res;
     }
 };
