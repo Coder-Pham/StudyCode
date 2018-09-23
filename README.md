@@ -68,4 +68,5 @@ JavaScript visualization in the future.
     * Binary Search Tree [C++]
     * AVL Tree [C++]
     * Fenwick Tree (Binary Indexed Tree) [C++]
+* Trie [C++]
 * Union-Find Set (Disjoint Set) [C++, Java]
