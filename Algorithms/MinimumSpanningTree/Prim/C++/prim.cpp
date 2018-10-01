@@ -1,9 +1,8 @@
 /**
- * Author: Nhat M. Nguyen
- * Date: 22-12-17
+ * author Nhat M. Nguyen
+ * update 01-08-18
 **/
 
-#include <functional> // std::greater
 #include <iostream>
 #include <queue>   // std::priority_queue
 #include <vector>
@@ -13,16 +12,34 @@
 using namespace std;
 
 
-vector<bool> visited;
-priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq; // min heap
+const int MAXV = (int) 1e3;
+const int MAXE = (int) 1e3;
 
 
-void prim(int u, vector<pair<int, int>> adj) {
+struct Edge {
+    int v;
+    int w;
+
+    Edge(int v_, int w_) {
+        v = v_;
+        w = w_;
+    }
+
+    bool operator < (const Edge &other) const {
+        return w > other.w; // min heap is used but priority_queue is max heap by default
+    }
+};
+
+
+bool visited[MAXV];
+vector<Edge> adj[MAXV];
+priority_queue<Edge, vector<Edge>> pq; 
+
+
+void prim(int u, vector<Edge> adj_u) {
     visited[u] = true;
-    for (int i = 0; i < (int) adj.size(); i++) {
-        pair<int, int> edge = adj[i];
-        int v = edge.second;
-        if (!visited[v]) {
+    for (Edge &edge : adj_u) {
+        if (!visited[edge.v]) {
             pq.push(edge);
         }
     }
@@ -30,39 +47,33 @@ void prim(int u, vector<pair<int, int>> adj) {
 
 
 int main() {
-
-    /*** Get number of vertices, number of edges ***/
+    // Get number of vertices, number of edges
     int nVertices, nEdges;
     cin >> nVertices >> nEdges;
 
-    /*** Get each edge: u, v, w and generate adjacent lists ***/
-    vector<pair<int, int>> adj[nVertices];
+    // Get each edge: u, v, w and generate adjacent lists
     for (int i = 0; i < nEdges; i++) {
         int u, v, w;
         cin >> u >> v >> w;
-        adj[u].push_back(make_pair(w, v));
-        adj[v].push_back(make_pair(w, u));
+        adj[u].emplace_back(v, w);
+        adj[v].emplace_back(u, w);
     }
 
-    /*** Generate boolean vector to check if vertices have been visited ***/
-    for (int i = 0; i < nVertices; i++) {
-        visited.push_back(false);
-    }
+    // visited flags 
+    fill(visited, visited + nVertices, false);
 
-    /*** Prim's Minimum Spanning Tree ***/
+    // Prim's Minimum Spanning Tree
     int minCost = 0;
 
     visited[0] = true;
     prim(0, adj[0]);
 
     while (!pq.empty()) {
-        pair<int, int> edge = pq.top();
+        Edge min_edge = pq.top();
         pq.pop();
-        int v = edge.second;
-        if (visited[v]) continue;
-        int w = edge.first;
-        minCost += w;
-        prim(v, adj[v]);
+        if (visited[min_edge.v]) continue;
+        minCost += min_edge.w;
+        prim(min_edge.v, adj[min_edge.v]);
     }
 
     cout << "Min Cost: " << minCost << "\n";
@@ -71,9 +82,9 @@ int main() {
 }
 
 /*
-  TEST
+  Sample test
 
-+ IN:
+== Input ==
 7 10
 0 1 4
 0 3 1
@@ -86,7 +97,7 @@ int main() {
 4 6 10
 5 6 10
 
-+ OUT:
+== Output ==
 Min cost: 23
 
 */
