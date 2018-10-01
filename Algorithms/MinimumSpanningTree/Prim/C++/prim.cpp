@@ -6,7 +6,6 @@
 #include <iostream>
 #include <queue>   // std::priority_queue
 #include <vector>
-#include <utility> // std::pair
 
 
 using namespace std;
@@ -48,11 +47,11 @@ void prim(int u, vector<Edge> adj_u) {
 
 int main() {
     // Get number of vertices, number of edges
-    int nVertices, nEdges;
-    cin >> nVertices >> nEdges;
+    int nV, nE;
+    cin >> nV >> nE;
 
     // Get each edge: u, v, w and generate adjacent lists
-    for (int i = 0; i < nEdges; i++) {
+    for (int i = 0; i < nE; i++) {
         int u, v, w;
         cin >> u >> v >> w;
         adj[u].emplace_back(v, w);
@@ -60,10 +59,10 @@ int main() {
     }
 
     // visited flags 
-    fill(visited, visited + nVertices, false);
+    fill(visited, visited + nV, false);
 
     // Prim's Minimum Spanning Tree
-    int minCost = 0;
+    int min_cost = 0;
 
     visited[0] = true;
     prim(0, adj[0]);
@@ -72,11 +71,11 @@ int main() {
         Edge min_edge = pq.top();
         pq.pop();
         if (visited[min_edge.v]) continue;
-        minCost += min_edge.w;
+        min_cost += min_edge.w;
         prim(min_edge.v, adj[min_edge.v]);
     }
 
-    cout << "Min Cost: " << minCost << "\n";
+    cout << "Min Cost: " << min_cost << "\n";
 
     return 0;
 }
