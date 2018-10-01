@@ -1,7 +1,8 @@
 /**
  *  Author Nhat M. Nguyen
- *  Update 02-10-18
+ *  Update 01-10-18
 **/
+
 
 #include <algorithm> // std::sort
 #include <iostream>
@@ -31,8 +32,7 @@ struct DSU {
     }
 
     bool merge(int u, int v) {
-        u = find(u);
-        v = find(v);
+        u = find(u), v = find(v);
         if (u == v) return false;
         root[v] = u;
         return true;
@@ -43,26 +43,21 @@ struct DSU {
 struct Edge {
     int u, v, w;
 
-    Edge(int u, int v, int w) {
-        this->u = u;
-        this->v = v;
-        this->w = w;
+    Edge(int u_, int v_, int w_) {
+        u = u_, v = v_, w = w_;
     }
 };
 
 int main() {
-    // Get number of vertices and edges
-    int nVertices, nEdges;
-    cin >> nVertices >> nEdges;
+    // Get number of vertices and edges, and description of all edges
+    int nV, nE;
+    cin >> nV >> nE;
 
-    // Get all edges
     vector<Edge> edges;
 
-    for (int i = 0; i < nEdges; i++) {
+    for (int i = 0; i < nE; i++) {
         int u, v, w;
-        cin >> u >> v >> w;
-        Edge edge(u, v, w);
-        edges.push_back(edge);
+        edges.emplace_back(u, v, w);
     }
 
     // Sort all edges in ascending order of weight
@@ -72,11 +67,11 @@ int main() {
         });
 
     // Union-Find set for all vertices
-    DSU dsu(nVertices);
+    DSU dsu(nV);
 
     // Kruskal's Minimum Spanning Tree
     vector<Edge> mst;
-    int minCost = 0;
+    int min_cost = 0;
 
     for (Edge edge : edges) {
         int root_u = dsu.find(edge.u);
@@ -87,10 +82,10 @@ int main() {
     }
 
     for (Edge edge : mst) {
-        minCost += edge.w;
+        min_cost += edge.w;
     }
 
-    cout << "Min cost: " << minCost << "\n";
+    cout << "Min cost: " << min_cost << "\n";
 
     return 0;
 }
