@@ -1,6 +1,6 @@
 /**
- *  Author: Nhat M. Nguyen
- *  Date: 23-12-17
+ *  Author Nhat M. Nguyen
+ *  Update 02-10-18
 **/
 
 #include <algorithm> // std::sort
@@ -10,8 +10,34 @@
 
 using namespace std;
 
-vector<int> parent; // hash table
-vector<int> depth;
+
+struct DSU {
+    int n;
+    vector<int> root;
+
+    DSU(int n_) {
+        n = n_;
+        root.resize(n);
+        for (int i = 0; i < n; i++) {
+            root[i] = i;
+        }
+    };
+
+    int find(int u) {
+        while (u != root[u]) {
+            u = root[u];
+        }
+        return u;
+    }
+
+    bool merge(int u, int v) {
+        u = find(u);
+        v = find(v);
+        if (u == v) return false;
+        root[v] = u;
+        return true;
+    }
+};
 
 
 struct Edge {
@@ -22,41 +48,14 @@ struct Edge {
         this->v = v;
         this->w = w;
     }
-
-    bool operator < (const Edge &other) {
-        return (this->w < other.w);
-    }
 };
 
-
-int find(int u) {
-    int v = u;
-    while (v != parent[v]) {
-        v = parent[v];
-    }
-    return v;
-}
-
-
-void unionSet(int a, int b) {
-    if (depth[a] < depth[b]) {
-        parent[a] = b;
-    }
-    else {
-        parent[b] = a;
-        if (depth[a] == depth[b]) {
-            depth[a]++;
-        }
-    }
-}
-
-
 int main() {
-    /*** Get number of vertices and edges ***/
+    // Get number of vertices and edges
     int nVertices, nEdges;
     cin >> nVertices >> nEdges;
 
-    /*** Get all edges ***/
+    // Get all edges
     vector<Edge> edges;
 
     for (int i = 0; i < nEdges; i++) {
@@ -66,25 +65,24 @@ int main() {
         edges.push_back(edge);
     }
 
-    /*** Sort all edges in ascending order ***/
-    sort(edges.begin(), edges.end());
+    // Sort all edges in ascending order of weight
+    sort(edges.begin(), edges.end(),
+        [] (Edge e1, Edge e2) {
+            return e1.w < e2.w;
+        });
 
-    /*** Generate parent hash table & assign depth for each disjoint set ***/
-    for (int i = 0; i < nVertices; i++) {
-        parent.push_back(i);
-        depth.push_back(0);
-    }
+    // Union-Find set for all vertices
+    DSU dsu(nVertices);
 
-    /*** Kruskal's Minimum Spanning Tree ***/
+    // Kruskal's Minimum Spanning Tree
     vector<Edge> mst;
     int minCost = 0;
 
     for (Edge edge : edges) {
-        int root_u = find(edge.u);
-        int root_v = find(edge.v);
-        if (root_u != root_v) {
+        int root_u = dsu.find(edge.u);
+        int root_v = dsu.find(edge.v);
+        if (dsu.merge(root_u, root_v)) {
             mst.push_back(edge);
-            unionSet(root_u, root_v);
         }
     }
 
