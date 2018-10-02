@@ -7,9 +7,11 @@
 #include <iostream>
 #include <utility> // std::swap
 
+
 using namespace std;
 
-int calc_gcd(int a, int b) {
+
+int calcGCD(int a, int b) {
     if (a < b) {
         swap(a, b);
     }
@@ -24,14 +26,16 @@ int calc_gcd(int a, int b) {
     return b;
 }
 
-int calc_lcm(int a, int b) {
-    return a * b / calc_gcd(a, b);
+
+int calcLCM(int a, int b) {
+    return a * b / calcGCD(a, b);
 }
+
 
 int main() {
     int a, b;
     cin >> a >> b;
-    cout << "GCD: " << calc_gcd(a, b) << endl;
-    cout << "LCM: " << calc_lcm(a, b) << endl;
+    cout << "GCD: " << calcGCD(a, b) << endl;
+    cout << "LCM: " << calcLCM(a, b) << endl;
     return 0;
 }

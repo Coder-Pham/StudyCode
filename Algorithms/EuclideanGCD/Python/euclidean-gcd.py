@@ -6,10 +6,12 @@ def gcd(a, b):
         a, b = b, a
     return a
 
+
 def main():
     a = int(input())
     b = int(input())
     print(gcd(a, b))
+
 
 if __name__ == "__main__":
     main()
