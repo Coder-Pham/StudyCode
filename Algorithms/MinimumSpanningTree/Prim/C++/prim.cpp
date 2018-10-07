@@ -1,6 +1,6 @@
 /**
- * author Nhat M. Nguyen
- * update 01-08-18
+ * @author Nhat M. Nguyen
+ * @update 07-08-18
 **/
 
 #include <iostream>
@@ -25,7 +25,7 @@ struct Edge {
     }
 
     bool operator < (const Edge &other) const {
-        return w > other.w; // min heap is used but priority_queue is max heap by default
+        return w > other.w; // min heap is used but std::priority_queue is max heap by default
     }
 };
 
@@ -35,9 +35,9 @@ vector<Edge> adj[MAXV];
 priority_queue<Edge, vector<Edge>> pq; 
 
 
-void prim(int u, vector<Edge> adj_u) {
+void prim(int u) {
     visited[u] = true;
-    for (Edge &edge : adj_u) {
+    for (Edge &edge : adj[u]) {
         if (!visited[edge.v]) {
             pq.push(edge);
         }
@@ -72,7 +72,7 @@ int main() {
         pq.pop();
         if (visited[min_edge.v]) continue;
         min_cost += min_edge.w;
-        prim(min_edge.v, adj[min_edge.v]);
+        prim(min_edge.v);
     }
 
     cout << "Min Cost: " << min_cost << "\n";
