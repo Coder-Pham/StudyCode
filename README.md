@@ -26,7 +26,7 @@ to build this repository.
     * Maximum Subarray [Python]
     * Longest Common Subsequence [Python]
 * Dynamic Programming
-    * Longest Common Subsequence [C++]
+    * Longest Common Subsequence [C++, Python]
     * Longest Increasing Subsequence [C++]
     * Maximum Subarray [C++]
     * Rod Cutting [C++]
