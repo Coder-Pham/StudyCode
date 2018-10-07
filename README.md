@@ -11,6 +11,10 @@ Other languages are Java, Python and Pascal. I am planning to add some
 JavaScript visualization in the future.
 
 
+Currently, I am receiving some help from my friend [Nhan Pham](https://github.com/Coder-Pham)
+to build this repository.
+
+
 ## List of Algorithms ##
 * Backtracking
     * Generating binary sequences [C++]
@@ -55,6 +59,7 @@ JavaScript visualization in the future.
     * Insertion Sort [C++, Python]
     * Merge Sort [C++, Pascal]
     * Selection Sort [C++, Java, Python, Pascal]
+    * Quick Sort [C++]
 
 
 ## List of Data Structures ##

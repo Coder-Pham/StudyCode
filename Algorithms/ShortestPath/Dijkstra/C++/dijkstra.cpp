@@ -1,79 +1,96 @@
 /**
- *  Author: Nhat M. Nguyen
- *  Date: 27-12-17
+ *  @author Nhat M. Nguyen
+ *  @update  06-10-18
  *  Note: this is the improved version of dijkstra - by implementing priority-queue
 **/
 
-#include <algorithm> // std::fill
+
+#include <algorithm>
 #include <iostream>
-#include <queue> //std::priority_queue
-#include <utility> // std::pair
+#include <queue>     //std::priority_queue
 #include <vector>
 
 
 using namespace std;
 
 
-const int INF = (int) 1e6; // Infinite distance: should be > max_w * max_nEdges
-vector<int> dist;
-priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+struct Edge {
+	int v, w;
+	
+	Edge(int v_, int w_) {
+		v = v_, w = w_;
+	}
+};
 
 
-void relax(int u, int v, int w) {
-    if (dist[v] > dist[u] + w) {
-        dist[v] = dist[u] + w;
-        pq.push(make_pair(dist[v], v));
+struct Vertex {
+	int label;
+	int d;
+	
+	Vertex(int label_, int d_) {
+		label = label_;
+		d  = d_;
+	}
+	
+	bool operator < (const Vertex& other) const {
+		return d > other.d;   // minheap
+	}
+};
+
+
+const int MAXV = (int) 1e3;
+const int MAXE = (int) 1e3;
+const int INF  = (int) 1e9;  // Infinite distance: should be > max_w * max_nE
+int dist[MAXV];
+bool visited[MAXV];
+vector<Edge> adj[MAXV];
+priority_queue<Vertex, vector<Vertex>> pq;
+int nV, nE; 
+
+
+void relax(int u, Edge e) {
+    if (dist[e.v] > dist[u] + e.w) {
+        dist[e.v] = dist[u] + e.w;
+        pq.emplace(e.v, dist[e.v]);
+    }
+}
+
+
+void dijkstra(int src) {	    
+    fill(dist, dist + nV, INF);
+	fill(visited, visited + nV, false);
+
+	dist[src] = 0;
+	pq.emplace(src, 0);
+	
+    while (!pq.empty()) {
+        int u = pq.top().label;
+        pq.pop();
+        if (visited[u]) continue;
+        visited[u] = true;        
+        for (Edge e : adj[u]) {
+            if (visited[e.v]) continue;
+            relax(u, e);
+        }
     }
 }
 
 
 int main() {
+    cin >> nV >> nE;
 
-    freopen("in.txt", "r", stdin);
-    freopen("out.txt", "w", stdout);
-
-    /*** Get number of vertices and edges ***/
-    int nVertices, nEdges;
-    cin >> nVertices >> nEdges;
-
-    /*** Get edges and generate adjacent lists ***/
-    vector<pair<int, int>> adj[nVertices];
-    for (int i = 0; i < nEdges; i++) {
-        int u, v, w;
-        cin >> u >> v >> w;
-        adj[u].push_back(make_pair(v, w));
-        adj[v].push_back(make_pair(u, w));
+    for (int i = 0; i < nE; i++) {
+		int u, v, w;
+		cin >> u >> v >> w;
+		adj[u].emplace_back(v, w);
     }
+	
+	dijkstra(0);
 
-    /*** Generate distance array ***/
-    dist.resize(nVertices);
-    fill(dist.begin(), dist.end(), INF);
-
-
-    /*** Generate boolean vector to check visited vertices ***/
-    bool visited[nVertices];
-    fill(visited, visited + nVertices, false);
-
-    /*** Dijkstra ***/
-    dist[0] = 0;
-    pq.push(make_pair(dist[0], 0));
-
-    while (!pq.empty()) {
-        int u = pq.top().second;
-        pq.pop();
-        if (visited[u]) continue;
-        visited[u] = true;        
-        for (int i = 0; i < (int) adj[u].size(); i++) {
-            int v = adj[u][i].first;
-            int w = adj[u][i].second;
-            if (visited[v]) continue;
-            relax(u, v, w);
-        }
-    }
-
-    for (int i = 0; i < nVertices; i++) {
+    for (int i = 0; i < nV; i++) {
         printf("Dist[%d] = %d\n", i, dist[i]);
     }
+    
     return(0);
 }
 
@@ -100,4 +117,3 @@ Dist[4] = 4
 Dist[5] = 5
 
  */
-
