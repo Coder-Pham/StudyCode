@@ -31,7 +31,6 @@ to build this repository.
     * Maximum Subarray [C++]
     * Rod Cutting [C++]
     * Zero-One Knapsack [C++]
-* Euclidean GCD
 * Graph
     * Breadth-First Search (BFS) [C++, Java]
     * Depth-First Search (DFS) [C++, Java]
@@ -42,6 +41,12 @@ to build this repository.
 * Minimum Spanning Tree
     * Prim's MST [C++]
     * Kruskal's MST [C++]
+* Number Theory
+    * Euclidean GCD [C++]
+    * Sieve of Eratosthenes
+        * Naive Sieve [C++]
+        * Segmented Sieve [C++]
+    * Smallest Prime Factor Technique for Factorization [C++]
 * Searching
     * Binary Search with Lower-bound and Upper-bound functionalities [Java]
 * Shortest Path
@@ -49,9 +54,6 @@ to build this repository.
     * Dijkstra [C++, Java]
     * Floyd-Warshall [C++]
     * SPFA [C++]
-* Sieve of Eratosthenes
-    * Naive Sieve [C++]
-    * Segmented Sieve [C++]
 * Shunting Yard [C]
 * Sorting
     * Bubble Sort [Python]
