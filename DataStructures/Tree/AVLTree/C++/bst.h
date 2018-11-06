@@ -16,6 +16,8 @@ using namespace std;
 /**
  * This BSTree class is intended to be used as the parent class
  * for other types of tree: AVL, Red-Black, etc.
+ *
+ * NOTE: PRINT FUNCTION IS BROKEN (WILL RAISE RUNTIME-ERROR).
 **/
 
 
