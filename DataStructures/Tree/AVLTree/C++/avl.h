@@ -42,7 +42,7 @@ public:
         this->parent = nil;
         this->left = nil;
         this->right = nil;
-        this->height = -1;
+        this->height = 0;
     }
 
     void updateHeight() {
@@ -58,12 +58,12 @@ public:
 
     void leftRotate(AVLNode<T>* x) {
         AVLNode<T>* y = x->right;
-        
+
         x->right = y->left;
         if (y->left != this->nil) {
             y->left->parent = x;
         }
-        
+
         y->parent = x->parent;
         if (x->parent == this->nil) {
             this->root = y;
@@ -74,7 +74,7 @@ public:
         else {
             x->parent->right= y;
         }
-                
+
         x->parent = y;
         y->left = x;
 
@@ -82,15 +82,15 @@ public:
         y->updateHeight();
 
     }
-    
+
     void rightRotate(AVLNode<T>* y) {
         AVLNode<T>* x = y->left;
-        
+
         y->left = x->right;
         if (x->right != this->nil) {
             x->right->parent = y;
         }
-        
+
         x->parent = y->parent;
         if (y->parent == this->nil) {
             this->root = x;
@@ -101,7 +101,7 @@ public:
         else {
             y->parent->right = x;
         }
-        
+
         y->parent = x;
         x->right = y;
 
@@ -146,7 +146,8 @@ public:
     }
 
     void remove(AVLNode<T>* node) {
+        AVLNode<T>* parent = node->parent;
         BSTree<T, AVLNode<T>>::remove(node);
-        this->rebalance(node->parent);
+        this->rebalance(parent);
     }
 };
