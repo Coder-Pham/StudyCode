@@ -122,7 +122,7 @@ public class Main {
     }
 
     static class InputReader {
-        static final int MAX_NUM_EMPTY_LINES = 1;
+        static int MAX_NUM_EMPTY_LINES = 0; // default is zero, change if necessary
         BufferedReader reader;
         StringTokenizer tokenizer;
 
@@ -134,13 +134,12 @@ public class Main {
         String next() {
             while (tokenizer == null || !tokenizer.hasMoreTokens()) {
                 try {
-                    String line = null;
                     int numEmptyLines = 0;
                     while (true) {
-                        line = reader.readLine();
+                        String line = reader.readLine();
                         if (line != null) break;
                         numEmptyLines++;
-                        if (numEmptyLines == MAX_NUM_EMPTY_LINES) return null;
+                        if (numEmptyLines > MAX_NUM_EMPTY_LINES) return null;
                     }
                     tokenizer = new StringTokenizer(line);
                 }
@@ -159,11 +158,11 @@ public class Main {
             return Long.parseLong(next());
         }
 
-        public double nextDouble() {
+        double nextDouble() {
             return Double.parseDouble(next());
         }
 
-        public char nextChar() {
+        char nextChar() {
             return next().charAt(0);
         }
     }
