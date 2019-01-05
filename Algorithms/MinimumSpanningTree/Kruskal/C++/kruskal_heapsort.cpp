@@ -100,7 +100,7 @@ int main(int argc, char const *argv[])
         {
             count++;
             total += graph[i].w;
-            if (count == n-1)
+            if (count == n - 1)
             {
                 break;
             }
