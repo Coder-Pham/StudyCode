@@ -1,29 +1,23 @@
 /**
- *  Author: Nhat M. Nguyen
- *  Date: 27-12-17
+ * @author Nhat M. Nguyen
+ * @update 30-11-2018
 **/
 
-#include <iostream>
-#include <queue>
-#include <vector>
-
+#include <bits/stdc++.h>
 
 using namespace std;
 
-
 int main() {
+    int nv, ne;
+    cin >> nv >> ne;
 
-    /*** Get number of vertices and edges ***/
-    int nVertices, nEdges;
-    cin >> nVertices >> nEdges;
-
-    /*** Generate boolean vector to check visited vertices ***/
-    bool visited[nVertices];
-    fill(visited, visited + nVertices, false);
+    bool visited[nv];
+    fill(visited, visited + nv, false);
 
     /*** Get edges and generate adjacent lists ***/
-    vector<int> adj[nVertices];
-    for (int i = 0; i < nEdges; i++) {
+    vector<int> adj[nv];
+
+    for (int i = 0; i < ne; i++) {
         int u, v;
         cin >> u >> v;
         adj[u].push_back(v);
@@ -40,6 +34,7 @@ int main() {
         q.pop();
         visited[u] = true;
         cout << u << " ";
+
         for (int &v : adj[u]) {
             // Push unvisited neighbors to the queue
             if (!visited[v]) {
@@ -47,6 +42,7 @@ int main() {
             }
         }
     }
+
     cout << "\n";
     return 0;
 }
