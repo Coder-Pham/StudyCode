@@ -54,6 +54,11 @@ to build this repository.
   * Dijkstra [C++, Java]
   * Floyd-Warshall [C++]
   * SPFA [C++]
+    * Bellman-Ford [C++]
+    * Dijkstra [C++, Java]
+    * Floyd-Warshall [C++]
+    * SPFA [C++]
+    * Yen's K shortest paths [C++]
 * Shunting Yard [C]
 * Sorting
   * Bubble Sort [Python]
