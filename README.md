@@ -17,51 +17,53 @@ to build this repository.
 
 ## List of Algorithms ##
 * Backtracking
-    * Generating binary sequences [C++]
-    * Generating permutations [C++]
-    * Generating possible sums of a number [C++]
-    * Generating subsets [C++]
-    * Sudoku [C++]
+  * Generating binary sequences [C++]
+  * Generating permutations [C++]
+  * Generating possible sums of a number [C++]
+  * Generating subsets [C++]
+  * Sudoku [C++]
 * Divide-and-Conquer
-    * Maximum Subarray [Python]
-    * Longest Common Subsequence [Python]
+  * Maximum Subarray [Python]
+  * Longest Common Subsequence [Python]
 * Dynamic Programming
-    * Longest Common Subsequence [C++, Python]
-    * Longest Increasing Subsequence [C++]
-    * Maximum Subarray [C++]
-    * Rod Cutting [C++]
-    * Zero-One Knapsack [C++]
+  * Longest Common Subsequence [C++, Python]
+  * Longest Increasing Subsequence [C++]
+  * Maximum Subarray [C++]
+  * Rod Cutting [C++]
+  * Zero-One Knapsack [C++]
 * Graph
-    * Breadth-First Search (BFS) [C++, Java]
-    * Depth-First Search (DFS) [C++, Java]
-    * Directed Acrylic Graph (DAG) with Topological Sort
-        * DFS [C++]
-        * Kahn's algorithm [C++]
-    * Strongly Connnected Components (Kosaraju's Algorithm) [C++]
+  * Breadth-First Search (BFS) [C++, Java]
+  * Depth-First Search (DFS) [C++, Java]
+  * Directed Acrylic Graph (DAG) with Topological Sort
+    * DFS [C++]
+    * Kahn's algorithm [C++]
+  * Strongly Connnected Components (Kosaraju's Algorithm) [C++]
 * Minimum Spanning Tree
-    * Prim's MST [C++]
-    * Kruskal's MST [C++]
+  * Prim's MST [C++]
+  * Kruskal's MST [C++]
 * Number Theory
-    * Euclidean GCD [C++]
-    * Sieve of Eratosthenes
-        * Naive Sieve [C++]
-        * Segmented Sieve [C++]
-    * Smallest Prime Factor Technique for Factorization [C++]
+  * Euclidean GCD [C++]
+  * Sieve of Eratosthenes
+    * Naive Sieve [C++]
+    * Segmented Sieve [C++]
+  * Smallest Prime Factor Technique for Factorization [C++]
 * Searching
-    * Binary Search with Lower-bound and Upper-bound functionalities [Java]
+  * Binary Search with Lower-bound and Upper-bound functionalities [Java]
 * Shortest Path
-    * Bellman-Ford [C++]
-    * Dijkstra [C++, Java]
-    * Floyd-Warshall [C++]
-    * SPFA [C++]
+  * Bellman-Ford [C++]
+  * Dijkstra [C++, Java]
+  * Floyd-Warshall [C++]
+  * SPFA [C++]
 * Shunting Yard [C]
 * Sorting
-    * Bubble Sort [Python]
-    * Heap Sort [C++]
-    * Insertion Sort [C++, Python]
-    * Merge Sort [C++, Pascal]
-    * Selection Sort [C++, Java, Python, Pascal]
-    * Quick Sort [C++]
+  * Bubble Sort [Python]
+  * Heap Sort [C++]
+  * Insertion Sort [C++, Python]
+  * Merge Sort [C++, Pascal]
+  * Selection Sort [C++, Java, Python, Pascal]
+  * Quick Sort [C++]
+* String
+  * Knuth-Morris-Pratt (KMP) [C++]
 
 
 ## List of Data Structures ##
