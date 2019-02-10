@@ -258,56 +258,56 @@ public:
 
     #define GAPLENGTH 8
 
-    void printNode(Node* node, int nodeLevel, stack<int> &levelStack) {
-        if (node == this->nil) return;
+    // void printNode(Node* node, int nodeLevel, stack<int> &levelStack) {
+    //     if (node == this->nil) return;
 
-        int* stackEnd = &levelStack.top() + 1;
-        int* stackBegin = stackEnd - levelStack.size();
-        vector<int> pending(stackBegin, stackEnd);
-        int k = 0;
+    //     int* stackEnd = &levelStack.top() + 1;
+    //     int* stackBegin = stackEnd - levelStack.size();
+    //     vector<int> pending(stackBegin, stackEnd);
+    //     int k = 0;
 
-        for (int i = 0; i < nodeLevel; i++) {
-            if (k < (int) pending.size() && pending[k] == i) {
-                cout << "│";
-                for (int j = 1; j < GAPLENGTH; j++) {
-                    cout << ' ';
-                }
-                k++;
-            }
-            else {
-                for (int j = 0; j < GAPLENGTH; j++) {
-                    cout << ' ';
-                }
-            }
-        }
+    //     for (int i = 0; i < nodeLevel; i++) {
+    //         if (k < (int) pending.size() && pending[k] == i) {
+    //             cout << "│";
+    //             for (int j = 1; j < GAPLENGTH; j++) {
+    //                 cout << ' ';
+    //             }
+    //             k++;
+    //         }
+    //         else {
+    //             for (int j = 0; j < GAPLENGTH; j++) {
+    //                 cout << ' ';
+    //             }
+    //         }
+    //     }
 
-        if (nodeLevel == 0) {
-            cout << "└─";
-            cout << "[root : ";
-        }
-        else {
-            if (node == node->parent->left) {
-                if (node->parent->right == this->nil) {
-                    cout << "└─";
-                }
-                else {
-                    cout << "├─";
-                    levelStack.push(nodeLevel);
-                }
-                cout << "[left : ";
-            }
-            else {
-                cout << "└─";
-                cout << "[right: ";
-                assert(levelStack.top() == nodeLevel);
-                levelStack.pop();
-            }
-        }
+    //     if (nodeLevel == 0) {
+    //         cout << "└─";
+    //         cout << "[root : ";
+    //     }
+    //     else {
+    //         if (node == node->parent->left) {
+    //             if (node->parent->right == this->nil) {
+    //                 cout << "└─";
+    //             }
+    //             else {
+    //                 cout << "├─";
+    //                 levelStack.push(nodeLevel);
+    //             }
+    //             cout << "[left : ";
+    //         }
+    //         else {
+    //             cout << "└─";
+    //             cout << "[right: ";
+    //             assert(levelStack.top() == nodeLevel);
+    //             levelStack.pop();
+    //         }
+    //     }
 
-        cout << node->key << ']' << '\n';
-        this->printNode(node->left, nodeLevel + 1, levelStack);
-        this->printNode(node->right, nodeLevel + 1, levelStack);
-    }
+    //     cout << node->key << ']' << '\n';
+    //     this->printNode(node->left, nodeLevel + 1, levelStack);
+    //     this->printNode(node->right, nodeLevel + 1, levelStack);
+    // }
 
     void print() {
         stack<int> levelStack;

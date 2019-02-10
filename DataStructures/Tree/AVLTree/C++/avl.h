@@ -46,6 +46,8 @@ public:
     }
 
     void updateHeight() {
+        assert(this->left != NULL);
+        assert(this->right != NULL);
         this->height = max(this->left->height, this->right->height) + 1;
     }
 };
