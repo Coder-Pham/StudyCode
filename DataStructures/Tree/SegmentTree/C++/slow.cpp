@@ -1,53 +1,51 @@
 #include <bits/stdc++.h>
 
-
 using namespace std;
 
-
-const int N = (int) 1e6;
-int n;
-int a[N];
-
-
-void queryType1() {
-    int pos, inc;
-    cin >> pos >> inc;
-    for (int i = pos; i < n; i++) {
-        a[i] += inc;
-    }
-}
-
-
-void queryType2() {
-    int l, r;
-    cin >> l >> r;
-    if (l == 0) {
-        cout << a[r] << '\n';
-    }
-    else {
-        cout << (a[r] - a[l - 1]) << '\n';
-    }
-}
-
-
 int main() {
+    int n;
     cin >> n;
+
+    vector<int> a(n);
+    vector<int> sum(n);
+
     for (int i = 0; i < n; i++) {
         cin >> a[i];
     }
 
+    sum[0] = a[0];
+
     for (int i = 1; i < n; i++) {
-        a[i] += a[i - 1];
+        sum[i] = sum[i - 1] + a[i];
     }
-    
+
     int q;
     cin >> q;
 
-    for (int j = 0; j < q; j++) {
+    for (int i = 0; i < q; i++) {
         int type;
         cin >> type;
-        if (type == 1) queryType1();
-        else queryType2();
+
+        if (type == 1) { // update
+            int pos, new_val;
+            cin >> pos >> new_val;
+            a[pos] = new_val;
+            sum[pos] = (pos == 0) ? (a[0]) : (sum[pos - 1] + a[pos]);
+
+            for (int j = pos + 1; j < n; j++) {
+                sum[j] = sum[j - 1] + a[j];
+            }
+        }
+        else {
+            int low, high;
+            cin >> low >> high;
+            if (low == 0) {
+                cout << sum[high] << '\n';
+            }
+            else {
+                cout << (sum[high] - sum[low - 1]) << '\n';
+            }
+        }
     }
 
     return 0;

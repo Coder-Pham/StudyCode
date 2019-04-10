@@ -5,77 +5,62 @@ import time
 
 
 NUM_TESTS = 1000
-FAST = "st"
-SLOW = "slow"
-
-
-FLAGS = "-std=c++17 -Wall -Wextra -O2"
-
+GEN       = "python3 gen.py"
+SLOW      = "./slow"
+FAST      = "./segment"
 
 """
-    3 types of files:
-    _i: input
-    _o: right output, produced by SLOW
-    _a: answer/attempt, produced by FAST
+    This code should work on both Windows and Linux
+    3 files:
+    inf: input file
+    ouf: output file
+    anf: answer (correct output) file
 """
 
 
-def compile_cpp(file):
-    print("Compiling {0}.cpp...".format(file))
-    os.system("g++ {0} {1}.cpp -o {1}".format(FLAGS, file))
-
-
-def compile():
-    compile_cpp(SLOW)
-    compile_cpp(FAST)
-
-
-def run_test(test_index):
-    # os.system("python3 gen.py |& tee -a in.txt")
-    os.system("./gen.py > _i.txt")
-
-    os.system("./{0} < _i.txt > _o.txt".format(SLOW))
+def run_test():
+    os.system("{0} > inf".format(GEN))
+    os.system("{0} < inf > anf".format(SLOW))
 
     begin_time = time.time()
-    os.system("./{0} < _i.txt > _a.txt".format(FAST))
+    os.system("{0} < inf > ouf".format(FAST))
     time_taken = time.time() - begin_time
 
-    a_tokens = []
-    o_tokens = []
+    ouf_tokens = []
+    anf_tokens = []
 
-    with open ("_a.txt", 'r') as f:
+    with open ("ouf", 'r') as f:
         for line in f:
-            a_tokens += line.split()
+            ouf_tokens += line.split()
 
-    with open ("_o.txt", 'r') as f:
+    with open ("anf", 'r') as f:
         for line in f:
-            o_tokens += line.split()
+            anf_tokens += line.split()
 
-    if len(a_tokens) != len(o_tokens):
+    if len(ouf_tokens) != len(anf_tokens):
         print("WA: mismatched number of tokens")
         return False
     else:
-        for i in range(len(a_tokens)):
-            if o_tokens[i] != a_tokens[i]:
+        for i in range(len(ouf_tokens)):
+            if anf_tokens[i] != ouf_tokens[i]:
                 print("WA: different in token #{0}".format(i))
+                print("ouf token: {0}".format(ouf_tokens[i]))
+                print("anf token: {0}".format(anf_tokens[i]))
                 return False
 
-    # os.system("rm _i.txt _a.txt _o.txt")
     print("AC - time taken: {0:.6f}".format(time_taken))
     return True
 
 
 def main():
-    print("Compile?", end=' ')
-    compile() if input() == 'y' else 0
-
     for i in range(NUM_TESTS):
         print("#Test {0}: ".format(i), end='')
-        result = run_test(i)
+        result = run_test()
         if result == False:
             break
+
     if result == True:
-        print("All accepted!")
+        print("Good!")
 
 
 if __name__ == "__main__":

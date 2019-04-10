@@ -13,7 +13,7 @@ def rddouble(lower, upper):
 
 
 def main():
-    n = rdint(1, 10000)
+    n = rdint(1, 1000)
     print(n)
 
     for i in range(n):
@@ -21,7 +21,7 @@ def main():
         print(x, end=' ')
     print()
 
-    q = rdint(1, 1000)
+    q = rdint(100, 1000)
     print(q)
 
     for i in range(q):
@@ -34,8 +34,8 @@ def main():
 
         if qType == 1:
             pos = rdint(0, n - 1)
-            inc = rdint(1, 100)
-            print("{0} {1}".format(pos, inc))
+            nval = rdint(1, 1000)
+            print("{0} {1}".format(pos, nval))
         else:
             left = rdint(0, n - 1)
             right = rdint(left, n - 1)
