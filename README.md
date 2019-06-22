@@ -32,12 +32,15 @@ to build this repository.
   * Rod Cutting [C++]
   * Zero-One Knapsack [C++]
 * Graph
-  * Breadth-First Search (BFS) [C++, Java]
-  * Depth-First Search (DFS) [C++, Java]
-  * Directed Acrylic Graph (DAG) with Topological Sort
+  * Graph Traversal
+    * Breadth-First Search (BFS) [C++, Java]
+    * Depth-First Search (DFS) [C++, Java]
+  * Topological Sort in Directed Acyclic Graph
     * DFS [C++]
     * Kahn's algorithm [C++]
-  * Strongly Connnected Components (Kosaraju's Algorithm) [C++]
+  * Strongly Connnected Components - Kosaraju's Algorithm [C++]
+  * Matching
+    * Bipartite Matching - Hopcropft-Karp Algorithm [C++]
 * Minimum Spanning Tree
   * Prim's MST [C++]
   * Kruskal's MST [C++]
