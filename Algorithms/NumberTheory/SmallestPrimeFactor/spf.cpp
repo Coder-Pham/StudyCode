@@ -15,14 +15,14 @@ const int SQRT_N = (int) ((double) sqrt(N));
 int spf[N];
 
 
-void preprocessSPF() { // O(nlog(log(n)))
+void SieveSPF() { // O(nlog(log(n)))
     for (int i = 1; i < N; i++) {
         spf[i] = i;
     }
 
     for (int i = 2; i <= SQRT_N; i++) {
         if (spf[i] == i) { // i is a prime number
-            int j = i + i;
+            int j = i * i;
             while (j < N) {
                 if (spf[j] == j) { // only change spf[j] if it is unchanged before
                     spf[j] = i;
@@ -34,8 +34,8 @@ void preprocessSPF() { // O(nlog(log(n)))
 }
 
 
-void solve() {
-    preprocessSPF();
+void Solve() {
+    SieveSPF();
 
     int n;
     cin >> n;
@@ -56,6 +56,6 @@ void solve() {
 int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    solve();
+    Solve();
     return 0;
 }
