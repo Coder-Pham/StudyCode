@@ -24,7 +24,7 @@ void SieveSPF() { // O(nlog(log(n)))
         if (spf[i] == i) { // i is a prime number
             int j = i * i;
             while (j < N) {
-                if (spf[j] == j) { // only change spf[j] if it is unchanged before
+                if (spf[j] == j) { // only change spf[j] if it is not changed yet
                     spf[j] = i;
                 }
                 j += i;
