@@ -1,8 +1,8 @@
 /**
- * @author Nhat M. Nguyen
- * @date   22-04-18
+ * @author    Nhat M. Nguyen
+ * @created   22-04-18
+ * @updated   23-08-19
 **/
-
 
 /**
  *  Idea: LIS(i) must contains MAX(LIS(j)) where
@@ -10,34 +10,84 @@
  *  Time complexity: O(n^2)
 **/
 
-#include <iostream>
-
+#include <bits/stdc++.h>
 
 using namespace std;
 
+struct Result {
+    int length;
+    vector<int> seq;
 
-const int N = (int) 1e4;
-int n;
-int a[N];
-int dp[N];
+    friend ostream& operator<<(ostream& os, const Result& res) {
+        os << "{Length = " << res.length << "; ";
+        os << "Sequence = [ ";
+        for (auto x : res.seq) {
+            os << x << ' ';
+        }
+        os << "]}\n";
+        return os;
+    }
+};
 
+Result CalcLIS(const vector<int>& a) {
+    int n = a.size();
+    vector<int> lis(n, 0);
+    vector<int> pred(n, -1);
 
-int main() {
+    Result res;
+    res.length = 0;
+
+    lis[0] = 1; // base case
+
+    for (int i = 1; i < n; i++) {
+        for (int j = 0; j < i; j++) {
+            if (a[i] > a[j] && lis[i] < lis[j]) {
+                lis[i] = lis[j];
+                pred[i] = j;
+            }
+        }
+        lis[i]++;
+    }
+
+    int en = 0;
+
+    for (int i = 1; i < n; i++) {
+        if (lis[en] < lis[i]) {
+            en = i;
+            res.length = lis[en];
+        }
+    }
+
+    for (int i = en; i != -1; i = pred[i]) {
+        res.seq.push_back(i);
+    }
+
+    reverse(res.seq.begin(), res.seq.end());
+
+    return res;
+}
+
+void Solve() {
+    int n;
     cin >> n;
+
+    vector<int> a(n);
+
     for (int i = 0; i < n; i++) {
         cin >> a[i];
     }
-    int ans = 0;
-    fill(dp, dp + n, 0);
-    dp[0] = 1;
-    for (int i = 1; i < n; i++) {
-        for (int j = 0; j < i; j++) {
-            if (a[j] >= a[i]) continue;
-            dp[i] = max(dp[j], dp[i]);
-        }
-        dp[i]++;
-        ans = max(ans, dp[i]);
+
+    cout << CalcLIS(a) << "\n";
+}
+
+int main() {
+    int t;
+    cin >> t;
+
+    for (int i = 0; i < t; i++) {
+        cout << "Case " << i << ":\n";
+        Solve();
     }
-    cout << ans << "\n";
+
     return 0;
 }
