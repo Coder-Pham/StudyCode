@@ -1,23 +1,26 @@
-#include <bits/stdc++.h>
+/**
+ * @author   Nhat M. Nguyen
+ * @created  n/a
+ * @updated  13-09-19
+**/
 
+#include <bits/stdc++.h>
 
 using namespace std;
 
-
 struct FenwickTree {
-    int base;
     int n;
+    int base;
     vector<int> tree;
 
-    FenwickTree(int n_, int base_) {
-        base = base_;
-        n = n_;
+    FenwickTree(int n, int base=0) : n(n), base(base) {
         assert(base == 0 || base == 1);
         tree.resize(n + 1);
     }
 
     void update(int pos, int inc) {
         pos += 1 - base;
+
         while (pos <= n) {
             tree[pos] += inc;
             pos += pos & (-pos);
@@ -27,14 +30,15 @@ struct FenwickTree {
     int query(int pos) {
         pos += 1 - base;
         int res = 0;
+
         while (pos > 0) {
             res += tree[pos];
             pos -= pos & (-pos);
         }
+
         return res;
     }
 };
-
 
 int main() {
     ios_base::sync_with_stdio(0);

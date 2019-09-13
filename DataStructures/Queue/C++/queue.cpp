@@ -1,45 +1,52 @@
 /**
- * @author Nhat M. Nguyen
- * @date   20-04-18
+ * @author   Nhat M. Nguyen
+ * @created  20-04-18
+ * @updated  13-09-19
 **/
 
+#include <cassert>
 #include <iostream>
-
 
 using namespace std;
 
-
-const int SIZE = 100;
-
+const int CAPACITY = 100;
 
 struct Queue {
-    int head;
-    int tail;
-    int key[SIZE];
+    int keys[CAPACITY];
+    int size = 0;
+    int head = 0;
+    int tail = CAPACITY - 1;
+
+    bool empty() {
+        return size == 0;
+    }
 
     void enqueue(int key) { // Time complexity: O(1)
-        if (this->tail == SIZE - 1) {
-            this->tail = 0;
+        if (tail == CAPACITY - 1) {
+            tail = 0;
         }
         else {
-            this->tail++;
+            tail++;
         }
 
-        this->key[this->tail] = key;
+        keys[tail] = key;
+        size++;
     }
 
     int dequeue() {         // Time complexity: O(1)
-        int key = this->key[this->head];
-        if (this->head == SIZE - 1) {
-            this->head = 0;
+        assert(size > 0);
+        int key = keys[head];
+        
+        if (head == CAPACITY - 1) {
+            head = 0;
         }
         else {
-            this->head++;
+            head++;
         }
+
         return key;
     }
 };
-
 
 int main() {
     return 0;

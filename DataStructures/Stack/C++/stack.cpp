@@ -1,39 +1,34 @@
 /**
- * @author Nhat M. Nguyen
- * @date   19-04-18
+ * @author   Nhat M. Nguyen
+ * @created  20-04-18
+ * @updated  13-09-19
 **/
 
+#include <cassert>
 #include <iostream>
-
 
 using namespace std;
 
-
 const int MAXSIZE = 100;
 
-
 struct Stack {
-    int key[MAXSIZE];
+    int keys[MAXSIZE];
     int size = 0;
 
-    bool is_empty() {
-        if (this->size == 0) {
-            return true;
-        }
-        return false;
+    bool isEmpty() {
+        return size == 0;
     }
 
     void push(int key) { // Time complexity: O(1)
-        this->key[size] = key;
-        this->size++;
+        keys[size] = key;
+        size++;
     }
 
     int pop() {     // Time complexity: O(1)
-        this->size--;
-        return this->key[this->size + 1]; 
+        size--;
+        return keys[size + 1]; 
     }
 };
-
 
 int main() {
     return 0;
