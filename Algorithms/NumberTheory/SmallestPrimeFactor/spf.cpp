@@ -1,19 +1,15 @@
 /**
- * @author Nhat M. Nguyen
- * @date   04-11-18
+ * @author   Nhat M. Nguyen
+ * @created  04-11-18
 **/
-
 
 #include <bits/stdc++.h>
 
-
 using namespace std;
-
 
 const int N = (int) (1e6 + 1);
 const int SQRT_N = (int) ((double) sqrt(N));
 int spf[N];
-
 
 void SieveSPF() { // O(nlog(log(n)))
     for (int i = 1; i < N; i++) {
@@ -33,7 +29,6 @@ void SieveSPF() { // O(nlog(log(n)))
     }
 }
 
-
 void Solve() {
     SieveSPF();
 
@@ -51,7 +46,6 @@ void Solve() {
     }
     cout << '\n';
 }
-
 
 int main() {
     ios_base::sync_with_stdio(0);
